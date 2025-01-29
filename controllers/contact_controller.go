@@ -16,7 +16,7 @@ func ContactIndex(w http.ResponseWriter, r *http.Request) {
 		Contacts: models.GetAllContacts(),
 	}
 
-	err := tmpl.Execute((w, data))
+	err := tmpl.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
@@ -36,6 +36,6 @@ func ContactCreate(w http.ResponseWriter, r *http.Request) {
 
 		models.AddContact(newContact)
 
-		http.Redirect(w, w, "/", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 	}
 }
