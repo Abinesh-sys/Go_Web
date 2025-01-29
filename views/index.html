@@ -1,0 +1,44 @@
+{{ define "index" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        input, select, button { display: block; width: 100%; padding: 8px; margin: 10px 0; }
+        .contact-card { border: 1px solid #ccc; padding: 10px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Management</h1>
+
+        <!-- Contact Form -->
+        <form action="/contacts" method="POST">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <select name="role">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+            <button type="submit">Add Contact</button>
+        </form>
+
+        <!-- Contact List -->
+        <h2>Contacts</h2>
+        <div>
+            {{ range .Contacts }}
+                <div class="contact-card">
+                    <p><strong>Name:</strong> {{ .Name }}</p>
+                    <p><strong>Email:</strong> {{ .Email }}</p>
+                    <p><strong>Role:</strong> {{ .Role }}</p>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+</body>
+</html>
+{{ end }}
